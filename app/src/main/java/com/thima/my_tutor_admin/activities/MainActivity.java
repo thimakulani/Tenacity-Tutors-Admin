@@ -25,8 +25,20 @@ import com.thima.my_tutor_admin.interfaces.MenuAdapterClickInterface;
 import com.thima.my_tutor_admin.models.MenuModel;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.List;
+
+import bullyfox.sangeeth.testube.network.WebServer;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity implements MenuAdapterClickInterface, ImagePickerClickInterface {
 
@@ -59,13 +71,14 @@ public class MainActivity extends AppCompatActivity implements MenuAdapterClickI
 
     @Override
     public void OnMenuClick(int position, FloatingActionButton fab) {
-        if (position == 1){
+        if (position == 2){
             ProfileFragment profileFragment = new ProfileFragment(this);
             profileFragment.show(getSupportFragmentManager()
                     .beginTransaction().setCustomAnimations(R.anim.slide_up, R.anim.fade_out_anim)
                     .addSharedElement(fab, fab.getTransitionName()), "PROFILE");
         }
-        if (position == 2){
+        if (position == 1){
+
 
         }
 
