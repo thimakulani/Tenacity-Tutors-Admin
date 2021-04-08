@@ -38,7 +38,7 @@
             app:strokeColor="@color/indigo_200"
             app:strokeWidth="1dp"
             android:textColor="@color/indigo_200"
-            android:id="@+id/row_app_cancel"
+            android:id="@+id/row_app_accept"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             />
     </LinearLayout>
