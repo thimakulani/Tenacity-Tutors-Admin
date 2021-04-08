@@ -2,6 +2,7 @@ package com.thima.my_tutor_admin.dialogs;
 
 import android.os.Bundle;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -10,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.thima.my_tutor_admin.R;
 
-public class StudentsDialogFragment extends Fragment {
+public class StudentsDialogFragment extends DialogFragment {
 
 
     public StudentsDialogFragment() {
@@ -22,6 +23,7 @@ public class StudentsDialogFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setStyle(STYLE_NO_FRAME, R.style.FullScreenDialogStyle);
     }
 
     @Override

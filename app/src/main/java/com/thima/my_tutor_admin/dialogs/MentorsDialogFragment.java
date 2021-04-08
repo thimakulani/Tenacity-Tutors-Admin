@@ -2,6 +2,7 @@ package com.thima.my_tutor_admin.dialogs;
 
 import android.os.Bundle;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -11,7 +12,7 @@ import android.view.ViewGroup;
 import com.thima.my_tutor_admin.R;
 
 
-public class MentorsDialogFragment extends Fragment {
+public class MentorsDialogFragment extends DialogFragment {
 
 
     public MentorsDialogFragment() {
@@ -22,7 +23,6 @@ public class MentorsDialogFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

@@ -12,13 +12,14 @@ import android.view.ViewGroup;
 import com.thima.my_tutor_admin.R;
 
 
-public class ChatFragment extends DialogFragment {
+public class AppointmentDialogFragment extends DialogFragment {
 
 
-
-    public ChatFragment() {
+    public AppointmentDialogFragment() {
         // Required empty public constructor
     }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,6 @@ public class ChatFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chat, container, false);
+        return inflater.inflate(R.layout.fragment_appointment_dialog, container, false);
     }
 }

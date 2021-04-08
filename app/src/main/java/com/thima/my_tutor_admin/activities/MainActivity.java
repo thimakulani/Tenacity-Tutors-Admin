@@ -19,26 +19,14 @@ import com.squareup.picasso.Picasso;
 import com.thima.my_tutor_admin.R;
 import com.thima.my_tutor_admin.adapters.FabMenuAdapter;
 import com.thima.my_tutor_admin.dialogs.ProfileFragment;
+import com.thima.my_tutor_admin.dialogs.StudentsDialogFragment;
 import com.thima.my_tutor_admin.interfaces.CircleTransform;
 import com.thima.my_tutor_admin.interfaces.ImagePickerClickInterface;
 import com.thima.my_tutor_admin.interfaces.MenuAdapterClickInterface;
 import com.thima.my_tutor_admin.models.MenuModel;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Hashtable;
 import java.util.List;
-
-import bullyfox.sangeeth.testube.network.WebServer;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity implements MenuAdapterClickInterface, ImagePickerClickInterface {
 
@@ -76,9 +64,13 @@ public class MainActivity extends AppCompatActivity implements MenuAdapterClickI
             profileFragment.show(getSupportFragmentManager()
                     .beginTransaction().setCustomAnimations(R.anim.slide_up, R.anim.fade_out_anim)
                     .addSharedElement(fab, fab.getTransitionName()), "PROFILE");
+
         }
         if (position == 1){
-
+            StudentsDialogFragment frag = new StudentsDialogFragment();
+            frag.show(getSupportFragmentManager()
+                    .beginTransaction().setCustomAnimations(R.anim.slide_up, R.anim.fade_out_anim)
+                    .addSharedElement(fab, fab.getTransitionName()), "STUDENTS");
 
         }
 
@@ -105,12 +97,15 @@ public class MainActivity extends AppCompatActivity implements MenuAdapterClickI
             pDialog.setTitleText("Loading");
             pDialog.setCancelable(false);
             pDialog.show();
-            Toast.makeText(this, "selected", Toast.LENGTH_SHORT).show();
-            Uri img = data.getData();
-            Picasso.get().load(img)
-                    .resize(150, 150)
-                    .transform(new CircleTransform())
-                    .into(menu_profile_img);
+
+            if (data != null) {
+                Uri img = data.getData();
+                Picasso.get().load(img)
+                        .resize(150, 150)
+                        .transform(new CircleTransform())
+                        .into(menu_profile_img);
+            }
+
             pDialog.dismiss();
         }
 
