@@ -7,20 +7,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.DialogFragment;
 
 import com.thima.my_tutor_admin.R;
 
 import mehdi.sakout.aboutpage.AboutPage;
 import mehdi.sakout.aboutpage.Element;
 
-public class AboutFragment extends Fragment {
-    public AboutFragment() {
-        // Required empty public constructor
-    }
+public class AboutDialogFragment extends DialogFragment {
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setStyle(STYLE_NO_FRAME, R.style.FullScreenDialogStyle);
     }
 
     @Override
@@ -30,12 +29,12 @@ public class AboutFragment extends Fragment {
         Element adsElement = new Element();
         adsElement.setTitle("Advertise with us");
 
-        View aboutPage = new AboutPage(getContext())
+        return new AboutPage(getContext())
                 .isRTL(false)
                 .enableDarkMode(false)
+                .setDescription("Thima")
               //  .setImage(R.drawable.dummy_image)
                 .addItem(new Element().setTitle("Version 0.0.1"))
-                .addItem(adsElement)
                 .addGroup("Connect with us")
                 .addEmail("")
                 .addWebsite("")
@@ -47,8 +46,6 @@ public class AboutFragment extends Fragment {
                 .addGitHub("")
                 .addItem(getCopyRightsElement())
                 .create();
-
-        return aboutPage;
     }
 
 
@@ -61,12 +58,7 @@ public class AboutFragment extends Fragment {
         copyRightsElement.setIconTint(mehdi.sakout.aboutpage.R.color.about_item_icon_color);
         copyRightsElement.setIconNightTint(android.R.color.white);
         copyRightsElement.setGravity(Gravity.CENTER);
-        copyRightsElement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), copyrights, Toast.LENGTH_SHORT).show();
-            }
-        });
+        copyRightsElement.setOnClickListener(v -> Toast.makeText(getContext(), copyrights, Toast.LENGTH_SHORT).show());
         return copyRightsElement;
     }
 }

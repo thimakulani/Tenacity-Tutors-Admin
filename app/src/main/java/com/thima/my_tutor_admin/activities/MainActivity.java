@@ -1,15 +1,14 @@
 package com.thima.my_tutor_admin.activities;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.cazaea.sweetalert.SweetAlertDialog;
 import com.github.dhaval2404.imagepicker.ImagePicker;
@@ -18,6 +17,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.squareup.picasso.Picasso;
 import com.thima.my_tutor_admin.R;
 import com.thima.my_tutor_admin.adapters.FabMenuAdapter;
+import com.thima.my_tutor_admin.dialogs.AboutDialogFragment;
 import com.thima.my_tutor_admin.dialogs.ProfileFragment;
 import com.thima.my_tutor_admin.dialogs.StudentsDialogFragment;
 import com.thima.my_tutor_admin.interfaces.CircleTransform;
@@ -75,6 +75,12 @@ public class MainActivity extends AppCompatActivity implements MenuAdapterClickI
                     .beginTransaction().setCustomAnimations(R.anim.slide_up, R.anim.fade_out_anim)
                     .addSharedElement(fab, fab.getTransitionName()), "STUDENTS");
 
+        }
+
+
+        if(position == 8){
+            AboutDialogFragment about = new AboutDialogFragment();
+            about.show(getSupportFragmentManager().beginTransaction(), "About");
         }
 
 
