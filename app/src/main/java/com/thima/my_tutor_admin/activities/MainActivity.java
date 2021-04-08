@@ -18,8 +18,13 @@ import com.squareup.picasso.Picasso;
 import com.thima.my_tutor_admin.R;
 import com.thima.my_tutor_admin.adapters.FabMenuAdapter;
 import com.thima.my_tutor_admin.dialogs.AboutDialogFragment;
+import com.thima.my_tutor_admin.dialogs.AppointmentDialogFragment;
+import com.thima.my_tutor_admin.dialogs.ChatFragment;
+import com.thima.my_tutor_admin.dialogs.CommuniqueDialogFragment;
+import com.thima.my_tutor_admin.dialogs.MentorsDialogFragment;
 import com.thima.my_tutor_admin.dialogs.ProfileFragment;
 import com.thima.my_tutor_admin.dialogs.StudentsDialogFragment;
+import com.thima.my_tutor_admin.dialogs.SubjectsDialogFragment;
 import com.thima.my_tutor_admin.interfaces.CircleTransform;
 import com.thima.my_tutor_admin.interfaces.ImagePickerClickInterface;
 import com.thima.my_tutor_admin.interfaces.MenuAdapterClickInterface;
@@ -62,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements MenuAdapterClickI
 
     @Override
     public void OnMenuClick(int position, FloatingActionButton fab) {
-        if (position == 2){
+        if (position == 0){
             ProfileFragment profileFragment = new ProfileFragment(this);
             profileFragment.show(getSupportFragmentManager()
                     .beginTransaction().setCustomAnimations(R.anim.slide_up, R.anim.fade_out_anim)
@@ -76,13 +81,40 @@ public class MainActivity extends AppCompatActivity implements MenuAdapterClickI
                     .addSharedElement(fab, fab.getTransitionName()), "STUDENTS");
 
         }
+        if (position == 2)
+        {
+            MentorsDialogFragment mentors = new MentorsDialogFragment();
+            mentors.show(getSupportFragmentManager().beginTransaction(), "MENTORS");
+        }
+        if (position == 3)
+        {
+            SubjectsDialogFragment subjects = new SubjectsDialogFragment();
+            subjects.show(getSupportFragmentManager().beginTransaction(), "SUBJECTS");
+        }
+        if (position == 4)
+        {
+            ChatFragment chats = new ChatFragment();
+            chats.show(getSupportFragmentManager().beginTransaction(), "CHATS");
 
-
-        if(position == 8){
+        }
+        if (position == 5)
+        {
+            AppointmentDialogFragment appointment = new AppointmentDialogFragment();
+            appointment.show(getSupportFragmentManager().beginTransaction(), "APPOINTMENT");
+        }
+        if (position == 6)
+        {
+            CommuniqueDialogFragment communique = new CommuniqueDialogFragment();
+            communique.show(getSupportFragmentManager().beginTransaction(), "COMMUNIQUE");
+        }
+        if(position == 7){
             AboutDialogFragment about = new AboutDialogFragment();
             about.show(getSupportFragmentManager().beginTransaction(), "About");
         }
-
+        if (position == 8)
+        {
+            finish();
+        }
 
 
     }
