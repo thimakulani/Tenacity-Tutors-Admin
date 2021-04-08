@@ -9,6 +9,8 @@ import androidx.fragment.app.DialogFragment;
 
 import com.thima.my_tutor_admin.R;
 
+import java.util.Objects;
+
 
 public class AddCommuniqueDialogFragment extends DialogFragment {
 
@@ -20,7 +22,7 @@ public class AddCommuniqueDialogFragment extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(STYLE_NO_FRAME, R.style.FullScreenDialogStyle);
+        //setStyle(STYLE_NO_FRAME, R.style.FullScreenDialogStyle);
     }
 
     @Override
@@ -28,5 +30,10 @@ public class AddCommuniqueDialogFragment extends DialogFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_communique_dialog, container, false);
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        Objects.requireNonNull(getDialog()).getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 }
