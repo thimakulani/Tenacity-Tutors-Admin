@@ -50,14 +50,14 @@ public class MainActivity extends AppCompatActivity implements MenuAdapterClickI
         menu_profile_img = findViewById(R.id.menu_profile_img);
 
         Items.add(new MenuModel("Profile".toUpperCase(), R.drawable.baseline_account_circle_white_img_24dp, R.color.deep_purple_500));
-        Items.add(new MenuModel("Students".toUpperCase(), R.drawable.baseline_account_circle_white_24dp, R.color.red_500));
-        Items.add(new MenuModel("Mentors".toUpperCase(), R.drawable.baseline_account_circle_white_24dp, R.color.blue_50));
+        Items.add(new MenuModel("Students".toUpperCase(), R.drawable.baseline_account_circle_white_24dp, R.color.indigo_900));
+        Items.add(new MenuModel("Mentors".toUpperCase(), R.drawable.baseline_account_circle_white_24dp, R.color.purple_A700));
         Items.add(new MenuModel("Subjects".toUpperCase(), R.drawable.baseline_account_circle_white_24dp, R.color.red_500));
         Items.add(new MenuModel("Messages".toUpperCase(), R.drawable.baseline_account_circle_white_24dp, R.color.blue_500));
         Items.add(new MenuModel("Meeting".toUpperCase(), R.drawable.baseline_account_circle_white_24dp, R.color.green_500));
         Items.add(new MenuModel("Notify".toUpperCase(), R.drawable.baseline_account_circle_white_24dp, R.color.grey_500));
-        Items.add(new MenuModel("About".toUpperCase(), R.drawable.baseline_account_circle_white_24dp, R.color.grey_500));
-        Items.add(new MenuModel("Logout".toUpperCase(), R.drawable.baseline_account_circle_white_24dp, R.color.grey_300));
+        Items.add(new MenuModel("About".toUpperCase(), R.drawable.baseline_account_circle_white_24dp, R.color.blue_grey_900));
+        Items.add(new MenuModel("Logout".toUpperCase(), R.drawable.baseline_account_circle_white_24dp, R.color.light_blue_900));
 
         FabMenuAdapter adapter = new FabMenuAdapter(this, Items);
         recycler.setLayoutManager(new GridLayoutManager(this, 3));
