@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements MenuAdapterClickI
         Items.add(new MenuModel("Meeting".toUpperCase(), R.drawable.baseline_account_circle_white_24dp, R.color.green_500));
         Items.add(new MenuModel("Notify".toUpperCase(), R.drawable.baseline_account_circle_white_24dp, R.color.grey_500));
         Items.add(new MenuModel("About".toUpperCase(), R.drawable.baseline_account_circle_white_24dp, R.color.grey_500));
-        Items.add(new MenuModel("Logout".toUpperCase(), R.drawable.baseline_account_circle_white_24dp, R.color.white));
+        Items.add(new MenuModel("Logout".toUpperCase(), R.drawable.baseline_account_circle_white_24dp, R.color.grey_300));
 
         FabMenuAdapter adapter = new FabMenuAdapter(this, Items);
         recycler.setLayoutManager(new GridLayoutManager(this, 3));

@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "278918925907",
+    "firebase_url": "https://tenacity-tutors-default-rtdb.firebaseio.com",
+    "project_id": "tenacity-tutors",
+    "storage_bucket": "tenacity-tutors.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278918925907:android:765200333dcd1d6ca000a6",
+        "android_client_info": {
+          "package_name": "com.que.mytutor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "278918925907-4opeva1a0abasif1avrummqr805es4jj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.que.mytutor",
+            "certificate_hash": "cddcb9d1cc47bfc225e0bcccfc6069af403735f2"
+          }
+        },
+        {
+          "client_id": "278918925907-48jv4od1e3gt9jkdrscp3vm89frc5hdi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqyDgbgfoCi5eu8_2ZeqhYjxtkfT_Gdh4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "278918925907-48jv4od1e3gt9jkdrscp3vm89frc5hdi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278918925907:android:165187f86a2b4a43a000a6",
+        "android_client_info": {
+          "package_name": "com.thima.my_tutor_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "278918925907-48jv4od1e3gt9jkdrscp3vm89frc5hdi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqyDgbgfoCi5eu8_2ZeqhYjxtkfT_Gdh4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "278918925907-48jv4od1e3gt9jkdrscp3vm89frc5hdi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
