@@ -48,7 +48,7 @@ public class ProfileFragment extends DialogFragment {
     }
 
     private void ConnectViews(View view) {
-        MaterialToolbar toolbar = view.findViewById(R.id.toolbar_profile);
+        MaterialToolbar toolbar = view.findViewById(R.id.app_toolbar);
         FloatingActionButton fab = view.findViewById(R.id.fab_upload_pic);
 
         fab.setOnClickListener(new View.OnClickListener() {

@@ -36,14 +36,10 @@ public class AboutDialogFragment extends DialogFragment {
               //  .setImage(R.drawable.dummy_image)
                 .addItem(new Element().setTitle("Version 0.0.1"))
                 .addGroup("Connect with us")
-                .addEmail("")
-                .addWebsite("")
-                .addFacebook("")
-                .addTwitter("")
-                .addYoutube("")
-                .addPlayStore("")
-                .addInstagram("")
-                .addGitHub("")
+                .addEmail("thimakulani@gmail.com")
+                .addWebsite("thimakulani.github.io")
+                .addFacebook("thima.sigauque")
+                .addGitHub("thimakulani")
                 .addItem(getCopyRightsElement())
                 .create();
     }
@@ -51,9 +47,9 @@ public class AboutDialogFragment extends DialogFragment {
 
     Element getCopyRightsElement() {
         Element copyRightsElement = new Element();
-        final String copyrights = "";
+        final String copyrights = "thima kulani";
         copyRightsElement.setTitle(copyrights);
-        copyRightsElement.setIconDrawable(R.drawable.baseline_account_circle_black_24dp);
+        copyRightsElement.setIconDrawable(R.drawable.baseline_copyright_black_24dp);
         copyRightsElement.setAutoApplyIconTint(true);
         copyRightsElement.setIconTint(mehdi.sakout.aboutpage.R.color.about_item_icon_color);
         copyRightsElement.setIconNightTint(android.R.color.white);

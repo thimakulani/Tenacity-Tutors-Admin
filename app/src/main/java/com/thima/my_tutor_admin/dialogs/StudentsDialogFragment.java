@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.thima.my_tutor_admin.R;
 
 public class StudentsDialogFragment extends DialogFragment {
@@ -30,6 +31,18 @@ public class StudentsDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_students_dialog, container, false);
+        View view = inflater.inflate(R.layout.fragment_students_dialog, container, false);
+        ConnectViews(view);
+        return view;
+    }
+
+    private void ConnectViews(View view) {
+        MaterialToolbar toolbar = view.findViewById(R.id.app_toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
     }
 }

@@ -3,5 +3,5 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/toolbar_profile"
+    android:id="@+id/app_toolbar"
     app:navigationIcon="@drawable/baseline_keyboard_backspace_white_24dp" />

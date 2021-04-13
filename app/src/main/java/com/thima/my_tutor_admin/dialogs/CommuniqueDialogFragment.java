@@ -13,6 +13,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -54,6 +55,13 @@ public class CommuniqueDialogFragment extends DialogFragment {
     private void ConnectViews(View view) {
         RecyclerView recycler = view.findViewById(R.id.recycler_communique);
         FloatingActionButton fab_add_communique = view.findViewById(R.id.fab_add_communique);
+        MaterialToolbar toolbar = view.findViewById(R.id.app_toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
 
 
         fab_add_communique.setOnClickListener(new View.OnClickListener() {
