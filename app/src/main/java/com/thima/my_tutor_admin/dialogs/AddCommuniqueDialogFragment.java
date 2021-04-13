@@ -4,11 +4,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.thima.my_tutor_admin.R;
+import com.thima.my_tutor_admin.models.Communique;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 
@@ -29,8 +38,51 @@ public class AddCommuniqueDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_communique_dialog, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_communique_dialog, container, false);
+        ConnectView(view);
+        return view;
     }
+
+    private void ConnectView(View view) {
+        FloatingActionButton fab_close = view.findViewById(R.id.fab_close);
+        TextInputEditText InputMessage = view.findViewById(R.id.InputCommunique);
+        MaterialButton BtnAdd = view.findViewById(R.id.btn_add_communique);
+
+
+        fab_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+
+        BtnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                if(InputTitle.getText().toString().isEmpty()){
+//                    InputTitle.setError("Provide Title/Topic");
+//                    return;
+//                }
+                if(InputMessage.getText().toString().isEmpty()){
+                    InputMessage.setError("Provide Message");
+                    return;
+                }
+                try {
+                    String currentDate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss tt", Locale.getDefault()).format(new Date());
+                    Communique communique = new Communique(currentDate, InputMessage.getText().toString().trim(), null);
+
+                    FirebaseFirestore.getInstance()
+                            .collection("Announcements")
+                            .add(communique);
+                    dismiss();
+                }
+                catch(Exception ex){
+                    Toast.makeText(view.getContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
     @Override
     public void onStart() {
         super.onStart();

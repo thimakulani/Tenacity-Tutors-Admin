@@ -43,4 +43,8 @@
     <string name="txt_profil">trans_profile</string>
     <string name="txt_approve">Approve</string>
     <string name="update_update">Update</string>
+    <string name="txt_title">TITLE</string>
+    <string name="txt_announcement">ANNOUNCEMENT</string>
+    <string name="txt_submit">SUBMIT</string>
+    <string name="phone_digits">0123456789</string>
 </resources>

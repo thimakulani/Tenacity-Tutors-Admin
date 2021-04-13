@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:transitionName="landing_page"
+    android:background="@drawable/view_style"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,6 +15,14 @@
         android:id="@+id/title_content"
         android:layout_margin="10dp"
         >
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            />
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,16 +50,16 @@
                 >
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_margin="5dp"
-                    app:boxCornerRadiusBottomEnd="4dp"
+                    android:layout_margin="10dp"
+                    app:boxCornerRadiusBottomEnd="20dp"
                     app:boxStrokeWidth="2dp"
-                    app:boxCornerRadiusBottomStart="4dp"
-                    app:boxCornerRadiusTopEnd="4dp"
-                    app:boxCornerRadiusTopStart="4dp"
-                    app:boxStrokeColor="@color/green_500"
-                    app:hintTextColor="@color/green_500"
-                    android:textColorHint="@color/green_500"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxCornerRadiusBottomStart="20dp"
+                    app:boxCornerRadiusTopEnd="20dp"
+                    app:boxCornerRadiusTopStart="20dp"
+                    app:boxStrokeColor="@color/white"
+                    app:hintTextColor="@color/white"
+                    android:textColorHint="@color/white"
+                    style="@style/InputStyles"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -64,16 +73,16 @@
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_margin="5dp"
-                    app:boxCornerRadiusBottomEnd="4dp"
+                    android:layout_margin="10dp"
+                    app:boxCornerRadiusBottomEnd="20dp"
                     app:boxStrokeWidth="2dp"
-                    app:boxCornerRadiusBottomStart="4dp"
-                    app:boxCornerRadiusTopEnd="4dp"
-                    app:boxCornerRadiusTopStart="4dp"
-                    app:boxStrokeColor="@color/green_500"
-                    app:hintTextColor="@color/green_500"
-                    android:textColorHint="@color/green_500"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxCornerRadiusBottomStart="20dp"
+                    app:boxCornerRadiusTopEnd="20dp"
+                    app:boxCornerRadiusTopStart="20dp"
+                    app:boxStrokeColor="@color/white"
+                    app:hintTextColor="@color/white"
+                    android:textColorHint="@color/white"
+                    style="@style/InputStyles"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -87,21 +96,22 @@
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_margin="5dp"
-                    app:boxCornerRadiusBottomEnd="4dp"
+                    android:layout_margin="10dp"
+                    app:boxCornerRadiusBottomEnd="20dp"
                     app:boxStrokeWidth="2dp"
-                    app:boxCornerRadiusBottomStart="4dp"
-                    app:boxCornerRadiusTopEnd="4dp"
-                    app:boxCornerRadiusTopStart="4dp"
-                    app:boxStrokeColor="@color/green_500"
-                    app:hintTextColor="@color/green_500"
-                    android:textColorHint="@color/green_500"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxCornerRadiusBottomStart="20dp"
+                    app:boxCornerRadiusTopEnd="20dp"
+                    app:boxCornerRadiusTopStart="20dp"
+                    app:boxStrokeColor="@color/white"
+                    app:hintTextColor="@color/white"
+                    android:textColorHint="@color/white"
+                    style="@style/InputStyles"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/input_phone_number"
+                        android:digits="@string/phone_digits"
                         android:textColor="@color/white"
                         android:id="@+id/sign_up_input_phone_number"
                         android:inputType="number"
@@ -110,16 +120,16 @@
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_margin="5dp"
-                    app:boxCornerRadiusBottomEnd="4dp"
+                    android:layout_margin="10dp"
+                    app:boxCornerRadiusBottomEnd="20dp"
                     app:boxStrokeWidth="2dp"
-                    app:boxCornerRadiusBottomStart="4dp"
-                    app:boxCornerRadiusTopEnd="4dp"
-                    app:boxCornerRadiusTopStart="4dp"
-                    app:boxStrokeColor="@color/green_500"
-                    app:hintTextColor="@color/green_500"
-                    android:textColorHint="@color/green_500"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxCornerRadiusBottomStart="20dp"
+                    app:boxCornerRadiusTopEnd="20dp"
+                    app:boxCornerRadiusTopStart="20dp"
+                    app:boxStrokeColor="@color/white"
+                    app:hintTextColor="@color/white"
+                    android:textColorHint="@color/white"
+                    style="@style/InputStyles"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -133,54 +143,31 @@
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    app:boxCornerRadiusBottomEnd="4dp"
+                    android:layout_margin="10dp"
+                    app:boxCornerRadiusBottomEnd="20dp"
                     app:boxStrokeWidth="2dp"
-                    app:boxCornerRadiusBottomStart="4dp"
-                    app:boxCornerRadiusTopEnd="4dp"
-                    app:boxCornerRadiusTopStart="4dp"
-                    app:boxStrokeColor="@color/green_500"
-                    app:hintTextColor="@color/green_500"
-                    android:textColorHint="@color/green_500"
+                    app:boxCornerRadiusBottomStart="20dp"
+                    app:boxCornerRadiusTopEnd="20dp"
+                    app:boxCornerRadiusTopStart="20dp"
+                    app:boxStrokeColor="@color/white"
+                    app:hintTextColor="@color/white"
+                    android:textColorHint="@color/white"
+                    style="@style/InputStyles"
+                    android:layout_height="wrap_content"
 
                     >
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/input_password"
+
                         android:textColor="@color/white"
                         android:inputType="textPassword"
                         android:id="@+id/sign_up_input_password"
                         />
 
                 </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    app:boxCornerRadiusBottomEnd="4dp"
-                    app:boxStrokeWidth="2dp"
-                    app:boxCornerRadiusBottomStart="4dp"
-                    app:boxCornerRadiusTopEnd="4dp"
-                    app:boxCornerRadiusTopStart="4dp"
-                    app:boxStrokeColor="@color/green_500"
-                    app:hintTextColor="@color/green_500"
-                    android:textColorHint="@color/green_500"
 
-                    >
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/input_password_confirm"
-                        android:textColor="@color/white"
-                        android:inputType="textPassword"
-                        android:id="@+id/sign_up_input_password_2"
-                        />
-
-                </com.google.android.material.textfield.TextInputLayout>
 
 
                 <com.google.android.material.button.MaterialButton
@@ -188,10 +175,10 @@
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="10dp"
                     android:text="@string/btn_sign_up"
                     android:textColor="#ffffff"
-                    app:backgroundTint="@color/green_900"
+                    app:backgroundTint="#FF363640"
                     app:cornerRadius="20dp" />
 
             </LinearLayout>
@@ -202,7 +189,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/green_500"
+                    android:background="@color/white"
                     android:layout_toStartOf="@+id/txtOr"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="10dp"
@@ -215,7 +202,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_margin="10dp"
                     android:text="@string/text_view_already_have_account"
-                    android:textColor="@color/green_500"
+                    android:textColor="#ffffff"
                     android:textStyle="bold"
                     android:textSize="20sp"
 
@@ -224,7 +211,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_toEndOf="@+id/txtOr"
-                    android:background="@color/green_500"
+                    android:background="@color/white"
                     android:layout_marginEnd="10dp"
                     android:layout_centerVertical="true"
                     />
@@ -237,7 +224,7 @@
                 android:layout_margin="10dp"
                 android:text="@string/btn_login"
                 android:textColor="#ffffff"
-                app:backgroundTint="@color/green_900"
+                app:backgroundTint="#FF363640"
                 app:cornerRadius="15dp" />
         </LinearLayout>
     </ScrollView>

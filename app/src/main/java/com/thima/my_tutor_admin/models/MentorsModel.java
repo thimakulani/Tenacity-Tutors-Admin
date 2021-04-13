@@ -1,72 +1,72 @@
 package com.thima.my_tutor_admin.models;
 
 public class MentorsModel {
-    private String Names;
-    private String Surname;
-    private String Id;
-    private String Gender;
+    private String name;
+    private String surname;
+    private String id;
+    private String phone;
 
 
 
-    private String ImgUrl;
-    private String Description;
+    private String imgUrl;
+    private String description;
 
     public MentorsModel() {
     }
 
-    public MentorsModel(String names, String surname, String id, String gender, String imgUrl, String description) {
-        Names = names;
-        Surname = surname;
-        Id = id;
-        Gender = gender;
-        ImgUrl = imgUrl;
-        Description = description;
+    public MentorsModel(String name, String surname, String id, String phone, String imgUrl, String description) {
+        this.name = name;
+        this.surname = surname;
+        this.id = id;
+        this.phone = phone;
+        this.imgUrl = imgUrl;
+        this.description = description;
 
     }
     public String getImgUrl() {
-        return ImgUrl;
+        return imgUrl;
     }
 
     public void setImgUrl(String imgUrl) {
-        ImgUrl = imgUrl;
+        this.imgUrl = imgUrl;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
-    public String getNames() {
-        return Names;
+    public String getName() {
+        return name;
     }
 
-    public void setNames(String names) {
-        Names = names;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSurname() {
-        return Surname;
+        return surname;
     }
 
     public void setSurname(String surname) {
-        Surname = surname;
+        this.surname = surname;
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
-    public String getGender() {
-        return Gender;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setGender(String gender) {
-        Gender = gender;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

@@ -38,7 +38,7 @@ public class MentorsAdapter extends RecyclerView.Adapter<MentorViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MentorViewHolder holder, int position) {
 
-        holder.TxtNames.setText(String.format("%s %s", Items.get(position).getNames(), Items.get(position).getSurname()));
+        holder.TxtNames.setText(String.format("%s %s", Items.get(position).getName(), Items.get(position).getSurname()));
         holder.TxtDescription.setText(Items.get(position).getDescription());
 
         Picasso.get().load(Items.get(position).getImgUrl())

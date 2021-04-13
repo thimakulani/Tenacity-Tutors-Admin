@@ -1,30 +1,40 @@
 package com.thima.my_tutor_admin.models;
 
 public class Communique {
-    private String date_time;
-    private String announcement;
+    private String datetime;
+    private String message;
+    private String id;
 
     public Communique() {
     }
 
-    public Communique(String date_time, String announcement) {
-        this.date_time = date_time;
-        this.announcement = announcement;
+    public String getId() {
+        return id;
     }
 
-    public String getDate_time() {
-        return date_time;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setDate_time(String date_time) {
-        this.date_time = date_time;
+    public Communique(String datetime, String message, String id) {
+        this.datetime = datetime;
+        this.message = message;
+        this.id = id;
     }
 
-    public String getAnnouncement() {
-        return announcement;
+    public String getDatetime() {
+        return datetime;
     }
 
-    public void setAnnouncement(String announcement) {
-        this.announcement = announcement;
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
