@@ -46,7 +46,8 @@ public class CommuniqueAdapter extends RecyclerView.Adapter<CommuniqueViewHolder
                         .setConfirmText("Yes, delete it!")
                         .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                             @Override
-                            public void onClick(SweetAlertDialog sDialog) {
+                            public void onClick(SweetAlertDialog sDialog)
+                            {
                                 FirebaseFirestore.getInstance()
                                         .collection("Announcements")
                                         .document(Items.get(position).getId())

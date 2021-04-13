@@ -1,17 +1,20 @@
 package com.thima.my_tutor_admin.dialogs;
 
 import android.content.ClipData;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -61,20 +64,43 @@ public class CommuniqueDialogFragment extends DialogFragment {
             }
         });
 
+        recycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        CommuniqueAdapter adapter = new CommuniqueAdapter(Items);
+        recycler.setAdapter(adapter);
+
         FirebaseFirestore.getInstance()
                 .collection("Announcements")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         if(!value.isEmpty())
                         {
-                            Items.addAll(value.toObjects(Communique.class));
+                            for (DocumentChange dc : value.getDocumentChanges()){
+                                switch (dc.getType()) {
+                                    case ADDED:
+                                        Communique item = dc.getDocument().toObject(Communique.class);
+                                        item.setId(dc.getDocument().getId());
+                                        Items.add(item);
+                                        adapter.notifyDataSetChanged();
+                                        break;
+                                    case MODIFIED:
+                                        break;
+                                    case REMOVED:
+
+                                        if(Items.removeIf(communique -> communique.getId().contains(dc.getDocument().getId())))
+                                        {
+                                            adapter.notifyDataSetChanged();
+                                        }
+
+                                        break;
+                                    default:
+                                }
+                            }
                         }
                     }
                 });
-        recycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        CommuniqueAdapter adapter = new CommuniqueAdapter(Items);
-        recycler.setAdapter(adapter);
+
 
 
     }

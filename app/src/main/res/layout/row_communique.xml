@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/green_500"
+            android:background="@color/green_200"
             android:padding="5dp"
             >
             <com.google.android.material.floatingactionbutton.FloatingActionButton

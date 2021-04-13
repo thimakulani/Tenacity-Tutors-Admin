@@ -56,7 +56,6 @@
                 android:layout_centerVertical="true"
                 android:layout_margin="20dp"
                 android:id="@+id/txt_home_display_name"
-                android:text="@string/app_name"
                 />
 
 

@@ -135,6 +135,8 @@ public class MainActivity extends AppCompatActivity implements MenuAdapterClickI
         }
         if (position == 8)
         {
+            FirebaseAuth.getInstance().signOut();
+            android.os.Process.killProcess(android.os.Process.myPid());
             finish();
         }
 
