@@ -53,7 +53,7 @@ public class CommuniqueAdapter extends RecyclerView.Adapter<CommuniqueViewHolder
                                         .document(Items.get(position).getId())
                                         .delete();
                                 sDialog.setTitleText("Deleted!")
-                                        .setContentText("Your imaginary file has been deleted!")
+                                        .setContentText("Your communique has been deleted!")
                                         .setConfirmText("OK")
                                         .setConfirmClickListener(null)
                                         .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);

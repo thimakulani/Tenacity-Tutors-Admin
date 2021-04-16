@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="4dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+
+        >
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/row_txt_subject_name"
+            android:layout_toStartOf="@+id/row_fab_delete_subject"
+            android:layout_centerVertical="true"
+            />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
+            android:layout_height="wrap_content"
+            android:id="@+id/row_fab_delete_subject"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/baseline_delete_white_24dp"
+            app:tint="@color/blue_500"
+            android:layout_centerVertical="true"
+            app:backgroundTint="@color/float_transparent"
+            app:elevation="0dp"
+            />
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

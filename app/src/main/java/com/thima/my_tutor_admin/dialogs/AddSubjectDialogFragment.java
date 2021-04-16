@@ -9,7 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cazaea.sweetalert.SweetAlertDialog;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.thima.my_tutor_admin.R;
+import com.thima.my_tutor_admin.models.SubjectsModel;
+
+import java.util.HashMap;
+import java.util.Objects;
 
 
 public class AddSubjectDialogFragment extends DialogFragment {
@@ -36,6 +47,57 @@ public class AddSubjectDialogFragment extends DialogFragment {
     }
 
     private void ConnectViews(View view) {
+        FloatingActionButton fab_close = view.findViewById(R.id.fab_close_add_subject);
+        TextInputEditText InputSubject  = view.findViewById(R.id.input_subject_name);
+        MaterialButton btn_add_subject = view.findViewById(R.id.btn_add_subject);
 
+        fab_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+        btn_add_subject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(InputSubject.getText().toString().isEmpty()){
+                    InputSubject.setError("Cannot be empty");
+                    return;
+                }
+                SubjectsModel subject = new SubjectsModel(InputSubject.getText().toString().trim(), null);
+                FirebaseFirestore.getInstance()
+                        .collection("Subjects")
+                        .add(subject).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        HashMap<String, Object> data = new HashMap<>();
+                        FirebaseFirestore.getInstance().collection("Subjects")
+                                .document(documentReference.getId())
+                                .update(data);
+                        new SweetAlertDialog(view.getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Success!!")
+                                .setContentText("Successfully added.")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                        sweetAlertDialog.dismiss();
+                                        InputSubject.getText().clear();
+                                    }
+                                });
+
+                    }
+                });
+
+
+
+
+            }
+        });
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        Objects.requireNonNull(getDialog()).getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 }

@@ -1,27 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="100"
+        android:orientation="vertical"
         >
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/row_stud_name"
-            android:layout_weight="50"
-            />
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/row_stud_surname"
-            android:layout_weight="50"
+            android:orientation="horizontal"
+            android:weightSum="100"
+            android:padding="5dp"
+            >
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/row_stud_name"
+                android:layout_weight="50"
+                />
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/row_stud_surname"
+                android:layout_weight="50"
+                />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/green_500"
             />
     </LinearLayout>
 
-</com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>

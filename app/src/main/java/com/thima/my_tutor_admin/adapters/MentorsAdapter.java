@@ -5,12 +5,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 import com.thima.my_tutor_admin.R;
 import com.thima.my_tutor_admin.interfaces.CircleTransform;
@@ -39,13 +45,14 @@ public class MentorsAdapter extends RecyclerView.Adapter<MentorViewHolder> {
     public void onBindViewHolder(@NonNull MentorViewHolder holder, int position) {
 
         holder.TxtNames.setText(String.format("%s %s", Items.get(position).getName(), Items.get(position).getSurname()));
-        holder.TxtDescription.setText(Items.get(position).getDescription());
+        holder.TxtDescription.setText(Items.get(position).getRole());
 
         Picasso.get().load(Items.get(position).getImgUrl())
-                .resize(200, 200)
+                .resize(150, 150)
                 .transform(new CircleTransform())
                 .placeholder(R.drawable.baseline_account_circle_black_24dp)
                 .into(holder.Img);
+        holder.BtnProfile.setVisibility(View.GONE);
         holder.BtnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,8 +60,8 @@ public class MentorsAdapter extends RecyclerView.Adapter<MentorViewHolder> {
             }
         });
 
-    }
 
+    }
     @Override
     public int getItemCount() {
         return Items.size();
@@ -63,14 +70,12 @@ public class MentorsAdapter extends RecyclerView.Adapter<MentorViewHolder> {
 class MentorViewHolder extends RecyclerView.ViewHolder{
 
     public MaterialButton BtnProfile;
-    public MaterialButton BtnSendMessage;
     public MaterialTextView TxtNames;
     public MaterialTextView TxtDescription;
     public AppCompatImageView Img;
     public MentorViewHolder(@NonNull View itemView) {
         super(itemView);
         BtnProfile = (MaterialButton)itemView.findViewById(R.id.row_m_btn_profile);
-        BtnSendMessage = (MaterialButton)itemView.findViewById(R.id.row_m_btn_message);
 
         TxtDescription = (MaterialTextView) itemView.findViewById(R.id.row_m_description);
         TxtNames = (MaterialTextView) itemView.findViewById(R.id.row_m_names);

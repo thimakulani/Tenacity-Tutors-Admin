@@ -58,6 +58,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/input_name"
+                    android:id="@+id/profile_input_name"
+                    android:inputType="textPersonName"
                     />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
@@ -68,6 +71,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/input_last_name"
+                    android:id="@+id/profile_input_surname"
+                    android:inputType="textPersonName"
                     />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
@@ -78,6 +84,10 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/input_phone_number"
+                    android:digits="@string/phone_digits"
+                    android:id="@+id/profile_input_phone"
+                    android:inputType="number"
                     />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
@@ -88,6 +98,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/input_email"
+                    android:digits="@string/email_inputs"
+                    android:enabled="false"
+                    android:inputType="textEmailAddress"
+                    android:id="@+id/profile_input_email"
                     />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
@@ -98,18 +113,13 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/txt_role"
+                    android:enabled="false"
+                    android:inputType="text"
+                    android:id="@+id/profile_input_role"
                     />
             </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                >
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
+
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
@@ -117,6 +127,7 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/update_update"
                 android:layout_marginBottom="10dp"
+                android:id="@+id/profile_btn_update"
                 />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

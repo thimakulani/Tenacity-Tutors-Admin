@@ -34,7 +34,7 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/fab_add_subjects"
+        android:id="@+id/fab_open_add_subjects"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="10dp"

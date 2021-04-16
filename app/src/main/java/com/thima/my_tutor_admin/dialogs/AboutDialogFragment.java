@@ -47,7 +47,7 @@ public class AboutDialogFragment extends DialogFragment {
 
     Element getCopyRightsElement() {
         Element copyRightsElement = new Element();
-        final String copyrights = "thima kulani";
+        final String copyrights = "Thapelo";
         copyRightsElement.setTitle(copyrights);
         copyRightsElement.setIconDrawable(R.drawable.baseline_copyright_black_24dp);
         copyRightsElement.setAutoApplyIconTint(true);

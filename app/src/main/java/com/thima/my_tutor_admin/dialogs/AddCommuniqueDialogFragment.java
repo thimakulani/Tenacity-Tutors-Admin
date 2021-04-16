@@ -68,7 +68,7 @@ public class AddCommuniqueDialogFragment extends DialogFragment {
                     return;
                 }
                 try {
-                    String currentDate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(new Date());
+                    String currentDate = new SimpleDateFormat("dd/MMM/yyyy HH:mm:ss", Locale.getDefault()).format(new Date());
                     Communique communique = new Communique(currentDate, InputMessage.getText().toString().trim(), null);
 
                     FirebaseFirestore.getInstance()
