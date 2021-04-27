@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentViewHolder> {
-    List<AppointmentModel> Items = new ArrayList<>();
+    List<AppointmentModel> Items;
     private final FragmentManager fm;
     public AppointmentAdapter(List<AppointmentModel> items, FragmentManager fm) {
         Items = items;
@@ -45,21 +45,23 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentViewHold
     public void onBindViewHolder(@NonNull AppointmentViewHolder holder, int position) {
 
         try {
-            holder.row_app_date_time.setText(Items.get(position).getDate() + " " +Items.get(position).getTime());
+            holder.row_app_date_time.setText(String.format("%s %s", Items.get(position).getDate(), Items.get(position).getTime()));
             holder.row_app_status.setText(Items.get(position).getStatus());
 
             if(!Items.get(position).getStud_id().isEmpty())
             {
+
+
+
+
+
                 FirebaseFirestore.getInstance()
                         .collection("Students")
                         .document(Items.get(position).getStud_id())
-                        .addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                            @Override
-                            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                                if(value !=null){
-                                    StudentsModel s = value.toObject(StudentsModel.class);
-                                    holder.row_app_name.setText(s.getName());
-                                }
+                        .addSnapshotListener((value, error) -> {
+                            if(value !=null){
+                                StudentsModel s = value.toObject(StudentsModel.class);
+                                holder.row_app_name.setText(s.getName());
                             }
                         });
             }
@@ -72,29 +74,23 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentViewHold
                 holder.row_app_btn_accept.setVisibility(View.GONE);
                 holder.row_app_btn_decline.setVisibility(View.GONE);
             }
-            holder.row_app_btn_accept.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    HashMap<String, Object> data = new HashMap<>();
-                    data.put("status", "Approved");
-                    FirebaseFirestore
-                            .getInstance()
-                            .collection("Appointments")
-                            .document(Items.get(position).getId())
-                            .update(data);
-                }
+            holder.row_app_btn_accept.setOnClickListener(v -> {
+                HashMap<String, Object> data = new HashMap<>();
+                data.put("status", "Approved");
+                FirebaseFirestore
+                        .getInstance()
+                        .collection("Appointments")
+                        .document(Items.get(position).getId())
+                        .update(data);
             });
-            holder.row_app_btn_decline.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    HashMap<String, Object> data = new HashMap<>();
-                    data.put("status", "Approved");
-                    FirebaseFirestore
-                            .getInstance()
-                            .collection("Rejected")
-                            .document(Items.get(position).getId())
-                            .update(data);
-                }
+            holder.row_app_btn_decline.setOnClickListener(v -> {
+                HashMap<String, Object> data = new HashMap<>();
+                data.put("status", "Approved");
+                FirebaseFirestore
+                        .getInstance()
+                        .collection("Rejected")
+                        .document(Items.get(position).getId())
+                        .update(data);
             });
         }
         catch (Exception ex){

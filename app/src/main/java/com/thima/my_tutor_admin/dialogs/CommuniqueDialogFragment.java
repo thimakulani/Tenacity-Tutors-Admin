@@ -41,6 +41,7 @@ public class CommuniqueDialogFragment extends DialogFragment {
         setStyle(STYLE_NO_FRAME, R.style.FullScreenDialogStyle);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,24 +53,17 @@ public class CommuniqueDialogFragment extends DialogFragment {
         return view;
     }
     private final List<Communique> Items = new ArrayList<>();
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void ConnectViews(View view) {
         RecyclerView recycler = view.findViewById(R.id.recycler_communique);
         FloatingActionButton fab_add_communique = view.findViewById(R.id.fab_add_communique);
         MaterialToolbar toolbar = view.findViewById(R.id.app_toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
+        toolbar.setNavigationOnClickListener(v -> dismiss());
 
 
-        fab_add_communique.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AddCommuniqueDialogFragment dlg = new AddCommuniqueDialogFragment();
-                dlg.show(getChildFragmentManager().beginTransaction(), "ADD COMMUNIQUE");
-            }
+        fab_add_communique.setOnClickListener(v -> {
+            AddCommuniqueDialogFragment dlg = new AddCommuniqueDialogFragment();
+            dlg.show(getChildFragmentManager().beginTransaction(), "ADD COMMUNIQUE");
         });
 
         recycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
@@ -78,34 +72,29 @@ public class CommuniqueDialogFragment extends DialogFragment {
 
         FirebaseFirestore.getInstance()
                 .collection("Announcements")
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @RequiresApi(api = Build.VERSION_CODES.N)
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if(!value.isEmpty())
-                        {
-                            for (DocumentChange dc : value.getDocumentChanges()){
-                                switch (dc.getType()) {
-                                    case ADDED:
-                                        Communique item = dc.getDocument().toObject(Communique.class);
-                                        item.setId(dc.getDocument().getId());
-                                        Items.add(item);
+                .addSnapshotListener((value, error) -> {
+                    if(!value.isEmpty())
+                    {
+                        for (DocumentChange dc : value.getDocumentChanges()){
+                            switch (dc.getType()) {
+                                case ADDED:
+                                    Items.add(dc.getDocument().toObject(Communique.class));
+
+                                    break;
+                                case MODIFIED:
+                                    break;
+                                case REMOVED:
+
+                                    if(Items.removeIf(communique -> communique.getId().contains(dc.getDocument().getId())))
+                                    {
                                         adapter.notifyDataSetChanged();
-                                        break;
-                                    case MODIFIED:
-                                        break;
-                                    case REMOVED:
+                                    }
 
-                                        if(Items.removeIf(communique -> communique.getId().contains(dc.getDocument().getId())))
-                                        {
-                                            adapter.notifyDataSetChanged();
-                                        }
-
-                                        break;
-                                    default:
-                                }
+                                    break;
+                                default:
                             }
                         }
+                        adapter.notifyDataSetChanged();
                     }
                 });
 

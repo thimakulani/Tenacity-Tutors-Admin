@@ -1,24 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:windowSoftInputMode="adjustResize"
     tools:context=".dialogs.MessegingDialogFragment">
   <com.google.android.material.appbar.AppBarLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:id="@+id/app_bar_layout"
       >
     <include
         layout="@layout/app_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         />
   </com.google.android.material.appbar.AppBarLayout>
-  <androidx.recyclerview.widget.RecyclerView
+
+
+  <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:id="@+id/recycler_chats"
-      />
+      android:orientation="vertical"
+      android:layout_below="@+id/app_bar_layout"
+      android:layout_above="@+id/bottom_wrapper"
+    >
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recycler_chats"
+        android:scrollbars="vertical"
 
-</LinearLayout>
+        />
+  </LinearLayout>
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/bottom_wrapper"
+      android:layout_alignParentBottom="true"
+      >
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textInputLayout1"
+        app:boxCornerRadiusTopStart="4dp"
+        app:boxCornerRadiusTopEnd="4dp"
+        app:boxCornerRadiusBottomStart="4dp"
+        app:boxCornerRadiusBottomEnd="4dp"
+        android:layout_margin="5dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_toStartOf="@+id/FabSendMessage"
+
+        >
+
+      <com.google.android.material.textfield.TextInputEditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="textMultiLine"
+          android:hint="@string/txt_reply"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:id="@+id/InputMessage"
+          />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="5dp"
+        app:fabSize="mini"
+        app:tint="@color/white"
+        app:backgroundTint="@color/green_900"
+        android:layout_centerVertical="true"
+        android:src="@android:drawable/ic_menu_send"
+        android:id="@+id/FabSendMessage"
+        android:layout_alignParentEnd="true"
+        tools:ignore="ContentDescription" />
+  </RelativeLayout>
+
+</RelativeLayout>

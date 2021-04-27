@@ -14,12 +14,14 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:id="@+id/row_app_name"
+            app:drawableTint="@color/blue_grey_600"
             android:drawableStart="@drawable/baseline_account_circle_black_24dp"
             />
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            app:drawableTint="@color/blue_grey_600"
             android:id="@+id/row_app_date_time"
             android:drawableStart="@drawable/baseline_calendar_today_black_24dp"
             />
@@ -27,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            app:drawableTint="@color/blue_grey_600"
             android:id="@+id/row_app_status"
             android:drawableStart="@drawable/baseline_receipt_long_black_24dp"
             />
@@ -36,6 +39,7 @@
                 android:layout_margin="10dp"
                 android:visibility="gone"
                 android:id="@+id/row_app_tutor_name"
+                app:drawableTint="@color/blue_grey_600"
                 android:drawableStart="@drawable/baseline_assignment_ind_black_24dp"
                 />
     <LinearLayout
@@ -64,7 +68,7 @@
             android:layout_weight="50"
             android:layout_marginEnd="5dp"
             android:layout_marginStart="5dp"
-            android:text="@string/txt_approve"
+            android:text="@string/txt_reject"
             android:layout_gravity="end"
             app:strokeColor="@color/indigo_200"
             app:strokeWidth="1dp"

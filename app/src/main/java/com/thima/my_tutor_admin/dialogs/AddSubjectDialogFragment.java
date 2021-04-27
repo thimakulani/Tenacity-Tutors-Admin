@@ -51,48 +51,31 @@ public class AddSubjectDialogFragment extends DialogFragment {
         TextInputEditText InputSubject  = view.findViewById(R.id.input_subject_name);
         MaterialButton btn_add_subject = view.findViewById(R.id.btn_add_subject);
 
-        fab_close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
+        fab_close.setOnClickListener(v -> dismiss());
+        btn_add_subject.setOnClickListener(v -> {
+            if(InputSubject.getText().toString().isEmpty()){
+                InputSubject.setError("Cannot be empty");
+                return;
             }
-        });
-        btn_add_subject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(InputSubject.getText().toString().isEmpty()){
-                    InputSubject.setError("Cannot be empty");
-                    return;
-                }
-                SubjectsModel subject = new SubjectsModel(InputSubject.getText().toString().trim(), null);
-                FirebaseFirestore.getInstance()
-                        .collection("Subjects")
-                        .add(subject).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        HashMap<String, Object> data = new HashMap<>();
-                        FirebaseFirestore.getInstance().collection("Subjects")
-                                .document(documentReference.getId())
-                                .update(data);
+            SubjectsModel subject = new SubjectsModel(InputSubject.getText().toString().trim(), null);
+            FirebaseFirestore.getInstance()
+                    .collection("Subjects")
+                    .add(subject).addOnSuccessListener(documentReference -> {
+                        documentReference.update("id", documentReference.getId());
                         new SweetAlertDialog(view.getContext(), SweetAlertDialog.SUCCESS_TYPE)
                                 .setTitleText("Success!!")
                                 .setContentText("Successfully added.")
                                 .setConfirmText("OK")
-                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                    @Override
-                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                        sweetAlertDialog.dismiss();
-                                        InputSubject.getText().clear();
-                                    }
+                                .setConfirmClickListener(sweetAlertDialog -> {
+                                    sweetAlertDialog.dismiss();
+                                    InputSubject.getText().clear();
                                 });
 
-                    }
-                });
+                    });
 
 
 
 
-            }
         });
     }
     @Override

@@ -30,10 +30,12 @@ public class AcceptDialog extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_accept_dialog, container, false);
     }
     @Override
-    public void onStart() {
+    public void onStart()
+    {
         super.onStart();
         Objects.requireNonNull(getDialog()).getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }

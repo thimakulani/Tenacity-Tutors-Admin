@@ -1,6 +1,7 @@
 package com.thima.my_tutor_admin.dialogs;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,41 +60,38 @@ public class AppointmentDialogFragment extends DialogFragment {
 
         FirebaseFirestore.getInstance().collection("Appointments")
                 .whereEqualTo("status", "Request")
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                .addSnapshotListener((value, error) -> {
 
-                        if(error != null){
-                            Toast.makeText(view.getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                        if (value != null && !value.isEmpty())
-                        {
+                    if(error != null){
+                        Toast.makeText(view.getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                    if (value != null && !value.isEmpty())
+                    {
 
-                            for (DocumentChange dc: value.getDocumentChanges()){
-                                switch (dc.getType()) {
-                                    case ADDED:
-                                        Items.add(dc.getDocument().toObject(AppointmentModel.class));
-                                        adapter.notifyDataSetChanged();
-                                        break;
-                                    case MODIFIED:
+                        for (DocumentChange dc: value.getDocumentChanges()){
+                            switch (dc.getType()) {
+                                case ADDED:
+                                    Items.add(dc.getDocument().toObject(AppointmentModel.class));
+                                    adapter.notifyDataSetChanged();
+                                    break;
+                                case MODIFIED:
 
-                                        int counter = 0;
-                                        for (AppointmentModel a : Items){
-                                            if(a.getId().equals(dc.getDocument().getId())){
-                                                Items.set(counter, dc.getDocument().toObject(AppointmentModel.class));
-                                                adapter.notifyDataSetChanged();
-                                                break;
-                                            }
-                                            counter++;
+                                    int counter = 0;
+                                    for (AppointmentModel a : Items){
+                                        if(a.getId().equals(dc.getDocument().getId())){
+                                            Items.set(counter, dc.getDocument().toObject(AppointmentModel.class));
+                                            adapter.notifyDataSetChanged();
+                                            break;
                                         }
-                                        break;
-                                    case REMOVED:
-                                        break;
-                                }
-
+                                        counter++;
+                                    }
+                                    break;
+                                case REMOVED:
+                                    break;
                             }
 
                         }
+
                     }
                 });
 

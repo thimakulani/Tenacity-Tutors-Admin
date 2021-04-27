@@ -18,6 +18,8 @@
             android:textSize="12sp"
             android:id="@+id/row_communique_dates"
             android:layout_margin="10dp"
+            app:drawableTint="@color/blue_grey_600"
+            android:drawableStart="@drawable/baseline_calendar_today_black_24dp"
             />
         <View
             android:layout_width="match_parent"
@@ -32,26 +34,23 @@
             android:layout_margin="10dp"
             />
 
-
-
-        <LinearLayout
+        <View
             android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/green_200"
-            android:padding="5dp"
-            >
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_gravity="end"
-                app:fabSize="mini"
-                android:id="@+id/row_communique_fab_delete"
-                app:tint="@color/white"
-                android:src="@drawable/baseline_delete_white_24dp"
-                tools:ignore="ContentDescription" />
-        </LinearLayout>
+            android:layout_gravity="end"
+            app:fabSize="mini"
+            android:id="@+id/row_communique_fab_delete"
+            app:tint="@color/blue_grey_600"
+            app:backgroundTint="@color/green_100"
+            android:src="@drawable/baseline_delete_white_24dp"
+            tools:ignore="ContentDescription" />
+
+
 
 
     </LinearLayout>

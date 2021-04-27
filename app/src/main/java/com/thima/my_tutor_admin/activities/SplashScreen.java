@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.thima.my_tutor_admin.R;
 
 public class SplashScreen extends AppCompatActivity {
@@ -19,6 +21,16 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        if(!FirebaseFirestore.getInstance().getFirestoreSettings().isPersistenceEnabled()){
+            FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                    .setPersistenceEnabled(true)
+                    .build();
+            FirebaseFirestore.getInstance().setFirestoreSettings(settings);
+        }
+
+
         setContentView(R.layout.activity_splash_screen);
 
         TextView appName = findViewById(R.id.txtAppName);

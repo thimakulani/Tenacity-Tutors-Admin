@@ -64,99 +64,76 @@ public class SignupFragment extends Fragment {
         TextInputEditText InputPhone = (TextInputEditText) view.findViewById(R.id.sign_up_input_phone_number);
         TextInputEditText InputPassword = (TextInputEditText) view.findViewById(R.id.sign_up_input_password);
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+        btnRegister.setOnClickListener(v -> {
+            boolean check = false;
+            if (InputName.getText().toString().trim().isEmpty()) {
+                InputName.setError("Cannot be empty");
+                check = true;
+            }
+            if (InputLastname.getText().toString().trim().isEmpty()) {
+                InputLastname.setError("Cannot be empty");
+            }
+            if (Objects.requireNonNull(InputEmail.getText()).toString().trim().isEmpty()) {
+                InputEmail.setError("Cannot be empty");
+                check = true;
+            }
+            if (InputPhone.getText().toString().trim().isEmpty()) {
+                InputPhone.setError("Cannot be empty");
+                check = true;
+            }
+            if (InputPassword.getText().toString().trim().isEmpty()) {
+                InputPassword.setError("Cannot be empty");
+                check = true;
+            }
 
-            @Override
-            public void onClick(View v) {
-                boolean check = false;
-                if (InputName.getText().toString().trim().isEmpty()) {
-                    InputName.setError("Cannot be empty");
-                    check = true;
-                }
-                if (InputLastname.getText().toString().trim().isEmpty()) {
-                    InputLastname.setError("Cannot be empty");
-                }
-                if (Objects.requireNonNull(InputEmail.getText()).toString().trim().isEmpty()) {
-                    InputEmail.setError("Cannot be empty");
-                    check = true;
-                }
-                if (InputPhone.getText().toString().trim().isEmpty()) {
-                    InputPhone.setError("Cannot be empty");
-                    check = true;
-                }
-                if (InputPassword.getText().toString().trim().isEmpty()) {
-                    InputPassword.setError("Cannot be empty");
-                    check = true;
-                }
-
-                if (!check)
-                {
-                    SweetAlertDialog pDialog = new SweetAlertDialog(view.getContext(), SweetAlertDialog.PROGRESS_TYPE);
-                    pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-                    pDialog.setTitleText("Loading");
-                    pDialog.setCancelable(false);
-                    pDialog.show();
+            if (!check)
+            {
+                SweetAlertDialog pDialog = new SweetAlertDialog(view.getContext(), SweetAlertDialog.PROGRESS_TYPE);
+                pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                pDialog.setTitleText("Loading");
+                pDialog.setCancelable(false);
+                pDialog.show();
 
 
 
-                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(InputEmail.getText().toString().trim(), InputPassword.getText().toString().trim())
-                            .addOnSuccessListener(authResult -> {
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(InputEmail.getText().toString().trim(), InputPassword.getText().toString().trim())
+                        .addOnSuccessListener(authResult -> {
 
-                                //StudModel studModel = new StudModel(InputName.getText().toString(), InputLastname.getText().toString(), InputEmail.getText().toString(), InputPhone.getText().toString());
-                                HashMap<String, Object> data = new HashMap<>();
-                                data.put("name", InputName.getText().toString().trim());
-                                data.put("surname", InputLastname.getText().toString().trim());
-                                data.put("phone", InputPhone.getText().toString().trim());
-                                data.put("email", InputEmail.getText().toString().trim());
-                                data.put("role", "Mentor");
-                                FirebaseFirestore.getInstance()
-                                        .collection("Tutors")
-                                        .document(authResult.getUser().getUid())
-                                        .set(data);
+                            //StudModel studModel = new StudModel(InputName.getText().toString(), InputLastname.getText().toString(), InputEmail.getText().toString(), InputPhone.getText().toString());
+                            HashMap<String, Object> data = new HashMap<>();
+                            data.put("name", InputName.getText().toString().trim());
+                            data.put("surname", InputLastname.getText().toString().trim());
+                            data.put("phone", InputPhone.getText().toString().trim());
+                            data.put("email", InputEmail.getText().toString().trim());
+                            data.put("role", "Tutor");
+                            FirebaseFirestore.getInstance()
+                                    .collection("Tutors")
+                                    .document(authResult.getUser().getUid())
+                                    .set(data);
 
-                                pDialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
-                                pDialog.setTitleText("Success!");
-                                pDialog.setContentText("Your profile has been successfully created");
-                                pDialog.setConfirmText("OK").setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                    @Override
-                                    public void onDismiss(DialogInterface dialog) {
-                                        pDialog.dismissWithAnimation();
-                                        Intent intent = new Intent(view.getContext(), MainActivity.class);
-                                        startActivity(intent);
-                                    }
-                                });
+                            pDialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                            pDialog.setTitleText("Success!");
+                            pDialog.setContentText("Your profile has been successfully created");
+                            pDialog.setConfirmText("OK").setOnDismissListener(dialog -> {
+                                pDialog.dismissWithAnimation();
+                                Intent intent = new Intent(view.getContext(), MainActivity.class);
+                                startActivity(intent);
+                            });
 
 
 
-                            }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
+                        }).addOnFailureListener(e -> {
                             pDialog.changeAlertType(SweetAlertDialog.ERROR_TYPE);
                             pDialog.setTitleText("Oops");
                             pDialog.setContentText(e.getMessage());
-                            pDialog.setConfirmText("OK").setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                @Override
-                                public void onDismiss(DialogInterface dialog) {
-                                    pDialog.dismissWithAnimation();
-                                }
-                            });
-                        }
-                    }).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            pDialog.setConfirmText("OK").setOnDismissListener(dialog -> pDialog.dismissWithAnimation());
+                        }).addOnCompleteListener(task -> {
 
-                        }
-                    });
-                }
+                });
             }
         });
 
-        btnBackToLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickInterface.LoginClick();
-            }
-        });
+        btnBackToLogin.setOnClickListener(v -> clickInterface.LoginClick());
     }
 
 }
