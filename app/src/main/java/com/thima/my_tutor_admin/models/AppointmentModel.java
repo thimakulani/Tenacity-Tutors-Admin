@@ -4,7 +4,9 @@ package com.thima.my_tutor_admin.models;
 
 
 public class AppointmentModel {
-    private String mentor_id;
+    private String tutor_id;
+    private String subject;
+
     private String id;
     private String time;
     private String date;
@@ -15,13 +17,22 @@ public class AppointmentModel {
     }
 
 
-    public AppointmentModel(String mentor_id, String id, String time, String date, String stud_id, String status) {
-        this.mentor_id = mentor_id;
+    public AppointmentModel(String tutor_id, String subject, String id, String time, String date, String stud_id, String status) {
+        this.tutor_id = tutor_id;
+        this.subject = subject;
         this.id = id;
         this.time = time;
         this.date = date;
         this.stud_id = stud_id;
         this.status = status;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public String getStatus() {
@@ -32,12 +43,12 @@ public class AppointmentModel {
         this.status = status;
     }
 
-    public String getMentor_id() {
-        return mentor_id;
+    public String getTutor_id() {
+        return tutor_id;
     }
 
-    public void setMentor_id(String mentor_id) {
-        this.mentor_id = mentor_id;
+    public void setTutor_id(String tutor_id) {
+        this.tutor_id = tutor_id;
     }
 
     public String getId() {

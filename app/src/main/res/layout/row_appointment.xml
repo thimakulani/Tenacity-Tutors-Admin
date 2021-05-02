@@ -21,6 +21,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:id="@+id/row_app_subject"
+            app:drawableTint="@color/blue_grey_600"
+            android:drawableStart="@drawable/baseline_subject_black_24dp"
+            />
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             app:drawableTint="@color/blue_grey_600"
             android:id="@+id/row_app_date_time"
             android:drawableStart="@drawable/baseline_calendar_today_black_24dp"

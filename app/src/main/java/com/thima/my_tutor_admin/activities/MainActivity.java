@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -14,20 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cazaea.sweetalert.SweetAlertDialog;
 import com.github.dhaval2404.imagepicker.ImagePicker;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
-import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 import com.thima.my_tutor_admin.R;
 import com.thima.my_tutor_admin.adapters.FabMenuAdapter;
@@ -35,14 +25,14 @@ import com.thima.my_tutor_admin.dialogs.AboutDialogFragment;
 import com.thima.my_tutor_admin.dialogs.AppointmentDialogFragment;
 import com.thima.my_tutor_admin.dialogs.ChatFragment;
 import com.thima.my_tutor_admin.dialogs.CommuniqueDialogFragment;
-import com.thima.my_tutor_admin.dialogs.MentorsDialogFragment;
+import com.thima.my_tutor_admin.dialogs.TutorsDialogFragment;
 import com.thima.my_tutor_admin.dialogs.ProfileFragment;
 import com.thima.my_tutor_admin.dialogs.StudentsDialogFragment;
 import com.thima.my_tutor_admin.dialogs.SubjectsDialogFragment;
 import com.thima.my_tutor_admin.interfaces.CircleTransform;
 import com.thima.my_tutor_admin.interfaces.ImagePickerClickInterface;
 import com.thima.my_tutor_admin.interfaces.MenuAdapterClickInterface;
-import com.thima.my_tutor_admin.models.MentorsModel;
+import com.thima.my_tutor_admin.models.TutorModel;
 import com.thima.my_tutor_admin.models.MenuModel;
 
 import java.util.ArrayList;
@@ -50,8 +40,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MainActivity extends AppCompatActivity implements MenuAdapterClickInterface, ImagePickerClickInterface {
 
+
+
+    private String role = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,26 +56,34 @@ public class MainActivity extends AppCompatActivity implements MenuAdapterClickI
 
         FirebaseFirestore.getInstance()
                 .collection("Tutors")
-                .document(FirebaseAuth.getInstance().getUid())
+                .document(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
                 .addSnapshotListener((value, error) -> {
-                    if(value.exists()){
-                        MentorsModel user = value.toObject(MentorsModel.class);
-                        txt_home_display_name.setText(user.getName());
-                        if(user.getImgUrl() != null){
+                    if (value != null && value.exists()) {
+                        TutorModel user = value.toObject(TutorModel.class);
+                        txt_home_display_name.setText(String.format("%s %s\nROLE: %s", user.getName(), user.getSurname(), user.getRole()));
+                        if (user.getImgUrl() != null) {
                             Picasso.get().load(user.getImgUrl())
-                                    .resize(150, 150)
-                                    .transform(new CircleTransform())
                                     .into(menu_profile_img);
+                        }
+                        if(role == null){
+                            role = user.getRole();
+                            if(role.equals("Tutor")){
+
+                            }
+                            else{
+                                SetupAdminMenu();
+                            }
                         }
                     }
                 });
 
-        SetupMenu();
+
+
     }
-    List<MenuModel> Items = new ArrayList<>();
-    ShapeableImageView menu_profile_img;
-    MaterialTextView txt_home_display_name;
-    private void SetupMenu() {
+    private final List<MenuModel> Items = new ArrayList<>();
+    private CircleImageView menu_profile_img;
+    private MaterialTextView txt_home_display_name;
+    private void SetupAdminMenu() {
         RecyclerView recycler = findViewById(R.id.recycler_menus);
 
 
@@ -124,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements MenuAdapterClickI
         }
         if (position == 2)
         {
-            MentorsDialogFragment mentors = new MentorsDialogFragment();
+            TutorsDialogFragment mentors = new TutorsDialogFragment();
             mentors.show(getSupportFragmentManager().beginTransaction(), "MENTORS");
         }
         if (position == 3)
@@ -166,8 +169,8 @@ public class MainActivity extends AppCompatActivity implements MenuAdapterClickI
     public void SelectImage() {
         ImagePicker.Companion.with(this)
                 .crop()
-                .compress(512)			//Final image size will be less than 1 MB(Optional)
-                .maxResultSize(120, 120)	//Final image resolution will be less than 1080 x 1080(Optional)
+                .compress(1024)			//Final image size will be less than 1 MB(Optional)
+                .maxResultSize(512, 512)	//Final image resolution will be less than 1080 x 1080(Optional)
                 .start();
 
     }

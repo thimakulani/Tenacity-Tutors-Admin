@@ -47,7 +47,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentViewHold
         try {
             holder.row_app_date_time.setText(String.format("%s %s", Items.get(position).getDate(), Items.get(position).getTime()));
             holder.row_app_status.setText(Items.get(position).getStatus());
-
+            holder.row_app_subject.setText(Items.get(position).getSubject());
             if(!Items.get(position).getStud_id().isEmpty())
             {
 
@@ -75,20 +75,15 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentViewHold
                 holder.row_app_btn_decline.setVisibility(View.GONE);
             }
             holder.row_app_btn_accept.setOnClickListener(v -> {
-                HashMap<String, Object> data = new HashMap<>();
-                data.put("status", "Approved");
-                FirebaseFirestore
-                        .getInstance()
-                        .collection("Appointments")
-                        .document(Items.get(position).getId())
-                        .update(data);
+                AcceptDialog dlg = new AcceptDialog(Items.get(position), holder.row_app_name.getText().toString());
+                dlg.show(fm.beginTransaction(), "");
             });
             holder.row_app_btn_decline.setOnClickListener(v -> {
                 HashMap<String, Object> data = new HashMap<>();
-                data.put("status", "Approved");
+                data.put("status", "Reject");
                 FirebaseFirestore
                         .getInstance()
-                        .collection("Rejected")
+                        .collection("Appointment")
                         .document(Items.get(position).getId())
                         .update(data);
             });
@@ -106,6 +101,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentViewHold
 class AppointmentViewHolder extends RecyclerView.ViewHolder {
 
     public MaterialTextView row_app_name;
+    public MaterialTextView row_app_subject;
     public MaterialTextView row_app_tutor_name;
     public MaterialTextView row_app_date_time;
     public MaterialTextView row_app_status;
@@ -114,6 +110,7 @@ class AppointmentViewHolder extends RecyclerView.ViewHolder {
     public AppointmentViewHolder(@NonNull View itemView) {
         super(itemView);
         row_app_tutor_name = (MaterialTextView)itemView.findViewById(R.id.row_app_tutor_name);
+        row_app_subject = (MaterialTextView)itemView.findViewById(R.id.row_app_subject);
         row_app_name = (MaterialTextView)itemView.findViewById(R.id.row_app_name);
         row_app_date_time = (MaterialTextView)itemView.findViewById(R.id.row_app_date_time);
         row_app_status = (MaterialTextView)itemView.findViewById(R.id.row_app_status);

@@ -58,6 +58,13 @@ public class AppointmentDialogFragment extends DialogFragment {
         AppointmentAdapter adapter = new AppointmentAdapter(Items, getChildFragmentManager());
         recycler.setAdapter(adapter);
 
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+
         FirebaseFirestore.getInstance().collection("Appointments")
                 .whereEqualTo("status", "Request")
                 .addSnapshotListener((value, error) -> {

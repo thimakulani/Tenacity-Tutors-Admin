@@ -12,7 +12,7 @@
         android:layout_height="150dp"
         android:scaleType="centerCrop"
         android:alpha="0.5"
-        app:srcCompat="@mipmap/back_ground_img"
+        app:srcCompat="@mipmap/tenacity"
         tools:ignore="ContentDescription" />
 
     <FrameLayout

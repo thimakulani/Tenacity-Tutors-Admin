@@ -106,6 +106,7 @@ public class SignupFragment extends Fragment {
                             data.put("phone", InputPhone.getText().toString().trim());
                             data.put("email", InputEmail.getText().toString().trim());
                             data.put("role", "Tutor");
+                            data.put("id", authResult.getUser().getUid());
                             FirebaseFirestore.getInstance()
                                     .collection("Tutors")
                                     .document(authResult.getUser().getUid())

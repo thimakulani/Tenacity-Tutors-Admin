@@ -23,8 +23,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:id="@+id/dlg_app_status"
+        android:id="@+id/dlg_app_subject"
         android:drawableStart="@drawable/baseline_receipt_long_black_24dp"
+        />
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_select_a_tutor"
+        android:layout_gravity="end"
+        app:strokeColor="@color/indigo_200"
+        app:strokeWidth="1dp"
+        android:textColor="@color/indigo_200"
+        android:id="@+id/dlg_app_select_tutor"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         />
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"

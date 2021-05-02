@@ -1,22 +1,15 @@
 package com.thima.my_tutor_admin.dialogs;
 
-import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.cazaea.sweetalert.SweetAlertDialog;
-import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -31,7 +24,7 @@ import com.squareup.picasso.Picasso;
 import com.thima.my_tutor_admin.R;
 import com.thima.my_tutor_admin.interfaces.CircleTransform;
 import com.thima.my_tutor_admin.interfaces.ImagePickerClickInterface;
-import com.thima.my_tutor_admin.models.MentorsModel;
+import com.thima.my_tutor_admin.models.TutorModel;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -127,7 +120,7 @@ public class ProfileFragment extends DialogFragment {
                     public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                         if (value != null && value.exists()) {
 
-                            MentorsModel user = value.toObject(MentorsModel.class);
+                            TutorModel user = value.toObject(TutorModel.class);
                             assert user != null;
                             profile_input_name.setText(user.getName());
                             profile_input_surname.setText(user.getSurname());
@@ -137,7 +130,6 @@ public class ProfileFragment extends DialogFragment {
 
                             if (user.getImgUrl() != null) {
                                 Picasso.get().load(user.getImgUrl())
-                                        .resize(100, 100)
                                         .transform(new CircleTransform())
                                         .into(img_dp);
                             }
