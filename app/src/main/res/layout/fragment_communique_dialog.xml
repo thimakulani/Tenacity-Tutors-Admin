@@ -21,13 +21,15 @@
         android:id="@+id/recycler_communique"
         android:layout_below="@+id/app_bar_layout"
         />
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:fabSize="mini"
+        android:text="@string/txt_add"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
         android:id="@+id/fab_add_communique"
-        app:tint="@color/white"
-        android:src="@drawable/baseline_playlist_add_white_24dp"
+        android:textColor="@color/white"
+        android:drawableEnd="@drawable/baseline_playlist_add_white_24dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="10dp"

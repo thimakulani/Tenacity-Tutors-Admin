@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -41,6 +42,7 @@ public class SubjectsDialogFragment extends DialogFragment {
         setStyle(STYLE_NO_FRAME, R.style.FullScreenDialogStyle);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,17 +51,15 @@ public class SubjectsDialogFragment extends DialogFragment {
         ConnectViews(view);
         return view;
     }
-    private final List<SubjectsModel> Items = new ArrayList<>();
+    private final ArrayList<SubjectsModel> Items = new ArrayList<>();
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void ConnectViews(View view) {
         MaterialToolbar toolbar = view.findViewById(R.id.app_toolbar);
-        FloatingActionButton fab_open_add = view.findViewById(R.id.fab_open_add_subjects);
-        fab_open_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AddSubjectDialogFragment fragment = new AddSubjectDialogFragment();
-                fragment.show(getChildFragmentManager().beginTransaction(), "ADD SUBJECT");
+        ExtendedFloatingActionButton fab_open_add = view.findViewById(R.id.fab_open_add_subjects);
+        fab_open_add.setOnClickListener(v -> {
+            AddSubjectDialogFragment fragment = new AddSubjectDialogFragment();
+            fragment.show(getChildFragmentManager().beginTransaction(), "ADD SUBJECT");
 
-            }
         });
 
         RecyclerView recycler = view.findViewById(R.id.recycler_subjects);
@@ -69,30 +69,26 @@ public class SubjectsDialogFragment extends DialogFragment {
 
         FirebaseFirestore.getInstance()
                 .collection("Subjects")
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @RequiresApi(api = Build.VERSION_CODES.N)
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if(!value.isEmpty())
-                        {
-                            for (DocumentChange dc : value.getDocumentChanges()){
+                .addSnapshotListener((value, error) -> {
+                    if(!value.isEmpty())
+                    {
+                        for (DocumentChange dc : value.getDocumentChanges()){
 
-                                switch (dc.getType()) {
-                                    case ADDED:
-                                        SubjectsModel subject = dc.getDocument().toObject(SubjectsModel.class);
-                                        subject.setId(dc.getDocument().getId());
-                                        Items.add(subject);
+                            switch (dc.getType()) {
+                                case ADDED:
+                                    SubjectsModel subject = dc.getDocument().toObject(SubjectsModel.class);
+                                    subject.setId(dc.getDocument().getId());
+                                    Items.add(subject);
+                                    adapter.notifyDataSetChanged();
+                                    break;
+                                case MODIFIED:
+                                    break;
+                                case REMOVED:
+                                    if(Items.removeIf(x -> x.getId().contains(dc.getDocument().getId())))
+                                    {
                                         adapter.notifyDataSetChanged();
-                                        break;
-                                    case MODIFIED:
-                                        break;
-                                    case REMOVED:
-                                        if(Items.removeIf(x -> x.getId().contains(dc.getDocument().getId())))
-                                        {
-                                            adapter.notifyDataSetChanged();
-                                        }
-                                        break;
-                                }
+                                    }
+                                    break;
                             }
                         }
                     }

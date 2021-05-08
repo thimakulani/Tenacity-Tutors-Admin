@@ -76,24 +76,19 @@
 
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
-    <com.google.android.material.card.MaterialCardView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/recycler_booked"
         android:layout_below="@+id/top_wrap_cv"
         android:layout_margin="10dp"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content"
-            >
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/recycler_menus"
-                >
-
-            </androidx.recyclerview.widget.RecyclerView>
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recycler_menus"
+        android:layout_below="@+id/recycler_booked"
+        android:background="@color/white"
+        android:layout_margin="10dp"
+        />
 </RelativeLayout>

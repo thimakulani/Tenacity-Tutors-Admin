@@ -47,14 +47,10 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentViewHold
         try {
             holder.row_app_date_time.setText(String.format("%s %s", Items.get(position).getDate(), Items.get(position).getTime()));
             holder.row_app_status.setText(Items.get(position).getStatus());
+            holder.row_app_grade.setText(Items.get(position).getGrade());
             holder.row_app_subject.setText(Items.get(position).getSubject());
             if(!Items.get(position).getStud_id().isEmpty())
             {
-
-
-
-
-
                 FirebaseFirestore.getInstance()
                         .collection("Students")
                         .document(Items.get(position).getStud_id())
@@ -101,6 +97,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentViewHold
 class AppointmentViewHolder extends RecyclerView.ViewHolder {
 
     public MaterialTextView row_app_name;
+    public MaterialTextView row_app_grade;
     public MaterialTextView row_app_subject;
     public MaterialTextView row_app_tutor_name;
     public MaterialTextView row_app_date_time;
@@ -110,6 +107,7 @@ class AppointmentViewHolder extends RecyclerView.ViewHolder {
     public AppointmentViewHolder(@NonNull View itemView) {
         super(itemView);
         row_app_tutor_name = (MaterialTextView)itemView.findViewById(R.id.row_app_tutor_name);
+        row_app_grade = (MaterialTextView)itemView.findViewById(R.id.row_app_grade);
         row_app_subject = (MaterialTextView)itemView.findViewById(R.id.row_app_subject);
         row_app_name = (MaterialTextView)itemView.findViewById(R.id.row_app_name);
         row_app_date_time = (MaterialTextView)itemView.findViewById(R.id.row_app_date_time);

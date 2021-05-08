@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.webkit.WebView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cazaea.sweetalert.SweetAlertDialog;
@@ -16,15 +19,21 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.squareup.picasso.Picasso;
 import com.thima.my_tutor_admin.R;
+import com.thima.my_tutor_admin.adapters.BookingAdapter;
 import com.thima.my_tutor_admin.adapters.FabMenuAdapter;
 import com.thima.my_tutor_admin.dialogs.AboutDialogFragment;
 import com.thima.my_tutor_admin.dialogs.AppointmentDialogFragment;
 import com.thima.my_tutor_admin.dialogs.ChatFragment;
 import com.thima.my_tutor_admin.dialogs.CommuniqueDialogFragment;
+import com.thima.my_tutor_admin.dialogs.TutoringDialogFragment;
 import com.thima.my_tutor_admin.dialogs.TutorsDialogFragment;
 import com.thima.my_tutor_admin.dialogs.ProfileFragment;
 import com.thima.my_tutor_admin.dialogs.StudentsDialogFragment;
@@ -32,6 +41,7 @@ import com.thima.my_tutor_admin.dialogs.SubjectsDialogFragment;
 import com.thima.my_tutor_admin.interfaces.CircleTransform;
 import com.thima.my_tutor_admin.interfaces.ImagePickerClickInterface;
 import com.thima.my_tutor_admin.interfaces.MenuAdapterClickInterface;
+import com.thima.my_tutor_admin.models.AppointmentModel;
 import com.thima.my_tutor_admin.models.TutorModel;
 import com.thima.my_tutor_admin.models.MenuModel;
 
@@ -53,6 +63,16 @@ public class MainActivity extends AppCompatActivity implements MenuAdapterClickI
         setContentView(R.layout.activity_main);
         menu_profile_img = findViewById(R.id.menu_profile_img);
         txt_home_display_name = findViewById(R.id.txt_home_display_name);
+        menu_profile_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new TutoringDialogFragment()
+                        .show(getSupportFragmentManager().beginTransaction(), "");
+
+            }
+        });
+        SetUpBookings();
+
 
         FirebaseFirestore.getInstance()
                 .collection("Tutors")
@@ -60,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements MenuAdapterClickI
                 .addSnapshotListener((value, error) -> {
                     if (value != null && value.exists()) {
                         TutorModel user = value.toObject(TutorModel.class);
-                        txt_home_display_name.setText(String.format("%s %s\nROLE: %s", user.getName(), user.getSurname(), user.getRole()));
+                        txt_home_display_name.setText(String.format("%s %s\nRole: %s", user.getName(), user.getSurname(), user.getRole()));
                         if (user.getImgUrl() != null) {
                             Picasso.get().load(user.getImgUrl())
                                     .into(menu_profile_img);
@@ -80,6 +100,46 @@ public class MainActivity extends AppCompatActivity implements MenuAdapterClickI
 
 
     }
+    List<AppointmentModel> app_items = new ArrayList<>();
+    private void SetUpBookings() {
+        RecyclerView recycler_booked = findViewById(R.id.recycler_booked);
+        recycler_booked.setLayoutManager(new LinearLayoutManager(this));
+        BookingAdapter adapter = new BookingAdapter(app_items);
+
+        FirebaseFirestore.getInstance()
+                .collection("Appointments")
+                .whereEqualTo("tutor_id", FirebaseAuth.getInstance().getUid())
+                .addSnapshotListener((value, error) -> {
+                    if(!value.isEmpty()){
+                        for(DocumentChange dc: value.getDocumentChanges()){
+                            switch (dc.getType()) {
+                                case ADDED:
+                                    app_items.add(dc.getDocument().toObject(AppointmentModel.class));
+                                    adapter.notifyDataSetChanged();
+                                    break;
+                                case MODIFIED:
+
+                                    int counter = 0;
+                                    for (AppointmentModel a : app_items){
+                                        if(a.getId().equals(dc.getDocument().getId())){
+                                            app_items.set(counter, dc.getDocument().toObject(AppointmentModel.class));
+                                            adapter.notifyDataSetChanged();
+                                            break;
+                                        }
+                                        counter++;
+                                    }
+                                    break;
+                                case REMOVED:
+                                    break;
+                            }
+
+                        }
+                    }
+                });
+
+
+    }
+
     private final List<MenuModel> Items = new ArrayList<>();
     private CircleImageView menu_profile_img;
     private MaterialTextView txt_home_display_name;

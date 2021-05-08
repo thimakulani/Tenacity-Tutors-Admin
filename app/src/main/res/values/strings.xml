@@ -53,4 +53,8 @@
     <string name="txt_reject">Reject</string>
     <string name="txt_reply">Reply</string>
     <string name="txt_select_a_tutor">SELECT A TUTOR</string>
+    <string name="txt_add">Add</string>
+    <string name="txt_subject_name">SUBJECT NAME</string>
+    <string name="txt_start_session">Start Session</string>
+    <string name="txt_accept">Accept</string>
 </resources>

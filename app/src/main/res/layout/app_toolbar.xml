@@ -5,4 +5,5 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:titleTextColor="@color/white"
     android:id="@+id/app_toolbar"
+    app:navigationIconTint="@color/blue_grey_800"
     app:navigationIcon="@drawable/baseline_keyboard_backspace_white_24dp" />

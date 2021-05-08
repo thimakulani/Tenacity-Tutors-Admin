@@ -21,13 +21,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/InputCommunique"
             android:hint="@string/txt_announcement"
+            android:textColor="@color/blue_grey_800"
             />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.button.MaterialButton
@@ -35,7 +36,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="@string/txt_submit"
+        android:drawableEnd="@drawable/baseline_double_arrow_white_24dp"
         android:id="@+id/btn_add_communique"
+        app:backgroundTint="@color/blue_grey_800"
         />
 
 

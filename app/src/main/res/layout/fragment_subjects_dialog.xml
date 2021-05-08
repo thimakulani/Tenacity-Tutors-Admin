@@ -31,14 +31,16 @@
         android:id="@+id/recycler_subjects"
 
         />
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/fab_open_add_subjects"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="10dp"
-        android:src="@drawable/baseline_playlist_add_white_24dp"
+        android:text="@string/txt_add"
+        android:textColor="@color/white"
+        android:drawableEnd="@drawable/baseline_playlist_add_white_24dp"
         app:tint="@color/white"
         tools:ignore="ContentDescription" />
 

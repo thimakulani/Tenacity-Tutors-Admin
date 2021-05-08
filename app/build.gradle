@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.thima.my_tutor_admin"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -27,6 +27,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 
 dependencies {
@@ -50,4 +51,7 @@ dependencies {
     implementation 'com.github.sangeethnandakumar:TestTube:v2.0.1'
     implementation 'com.github.medyo:android-about-page:1.3.1'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation ('org.jitsi.react:jitsi-meet-sdk:3.0.0') { transitive = true }
+
 }

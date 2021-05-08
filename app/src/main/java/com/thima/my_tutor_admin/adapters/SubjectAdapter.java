@@ -34,33 +34,29 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull SubjectViewHolder holder, int position) {
         holder.txt_subject_name.setText(Items.get(position).getSubject());
-        holder.fab_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-
+        holder.fab_delete.setOnClickListener(v ->
                 new SweetAlertDialog(holder.itemView.getContext(), SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("Are you sure?")
-                        .setContentText("Won't be able to recover this!")
-                        .setConfirmText("Yes, delete it!")
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sDialog)
-                            {
-                                FirebaseFirestore.getInstance()
-                                        .collection("Subjects")
-                                        .document(Items.get(position).getId())
-                                        .delete();
-                                sDialog.setTitleText("Deleted!")
-                                        .setContentText("Your subject has been deleted!")
-                                        .setConfirmText("OK")
-                                        .setConfirmClickListener(null)
-                                        .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
-                            }
-                        })
-                        .show();
-            }
-        });
+                .setTitleText("Are you sure?")
+                .setContentText("Won't be able to recover this!")
+                .setConfirmText("Yes, delete it!")
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog)
+                    {
+                        FirebaseFirestore.getInstance()
+                                .collection("Subjects")
+                                .document(Items.get(position).getId())
+                                .delete();
+                        sDialog.setTitleText("Deleted!")
+                                .setContentText("Your subject has been deleted!")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(null)
+                                .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                    }
+                }).setCancelText("No!")
+                        .setCancelClickListener(sweetAlertDialog -> sweetAlertDialog.dismissWithAnimation())
+
+                .show());
 
     }
 

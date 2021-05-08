@@ -11,6 +11,7 @@
         android:layout_margin="10dp"
         android:id="@+id/dlg_app_name"
         android:drawableStart="@drawable/baseline_account_circle_black_24dp"
+        android:drawableTint="@color/blue_grey_800"
         />
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
@@ -18,6 +19,7 @@
         android:layout_margin="10dp"
         android:id="@+id/dlg_app_date_time"
         android:drawableStart="@drawable/baseline_calendar_today_black_24dp"
+        android:drawableTint="@color/blue_grey_800"
         />
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
@@ -25,15 +27,18 @@
         android:layout_margin="10dp"
         android:id="@+id/dlg_app_subject"
         android:drawableStart="@drawable/baseline_receipt_long_black_24dp"
+        android:drawableTint="@color/blue_grey_800"
         />
     <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/txt_select_a_tutor"
         android:layout_gravity="end"
-        app:strokeColor="@color/indigo_200"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        app:strokeColor="@color/blue_grey_800"
         app:strokeWidth="1dp"
-        android:textColor="@color/indigo_200"
+        android:textColor="@color/blue_grey_800"
         android:id="@+id/dlg_app_select_tutor"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         />
@@ -41,12 +46,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txt_approve"
+        android:layout_marginEnd="10dp"
         android:layout_gravity="end"
         app:strokeColor="@color/indigo_200"
         app:strokeWidth="1dp"
-        android:textColor="@color/indigo_200"
+        app:cornerRadius="10dp"
+        android:drawableEnd="@drawable/baseline_double_arrow_white_24dp"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/blue_grey_800"
         android:id="@+id/dlg_app_submit"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        style="@style/Widget.MaterialComponents.Button"
         />
 
 </LinearLayout>

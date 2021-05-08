@@ -20,6 +20,7 @@
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
             android:id="@+id/row_m_profile"
+            app:tint="@color/blue_grey_600"
             android:src="@drawable/baseline_account_circle_black_24dp"
             />
         <com.google.android.material.textview.MaterialTextView
@@ -44,9 +45,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/row_m_btn_profile"
+            style="@style/Widget.MaterialComponents.Button"
             android:layout_margin="10dp"
             android:text="@string/txt_profile"
+            app:backgroundTint="@color/blue_grey_600"
             app:icon="@drawable/baseline_account_circle_black_24dp"
+            app:iconGravity="end"
             />
     </LinearLayout>
 

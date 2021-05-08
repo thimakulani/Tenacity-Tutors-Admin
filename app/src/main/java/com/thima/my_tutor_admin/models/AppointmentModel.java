@@ -7,6 +7,8 @@ public class AppointmentModel {
     private String tutor_id;
     private String subject;
 
+
+    private String grade;
     private String id;
     private String time;
     private String date;
@@ -17,16 +19,22 @@ public class AppointmentModel {
     }
 
 
-    public AppointmentModel(String tutor_id, String subject, String id, String time, String date, String stud_id, String status) {
+    public AppointmentModel(String tutor_id, String subject, String grade, String id, String time, String date, String stud_id, String status) {
         this.tutor_id = tutor_id;
         this.subject = subject;
+        this.grade = grade;
         this.id = id;
         this.time = time;
         this.date = date;
         this.stud_id = stud_id;
         this.status = status;
     }
-
+    public String getGrade() {
+        return grade;
+    }
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
     public String getSubject() {
         return subject;
     }
