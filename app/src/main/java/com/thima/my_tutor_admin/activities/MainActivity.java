@@ -63,14 +63,7 @@ public class MainActivity extends AppCompatActivity implements MenuAdapterClickI
         setContentView(R.layout.activity_main);
         menu_profile_img = findViewById(R.id.menu_profile_img);
         txt_home_display_name = findViewById(R.id.txt_home_display_name);
-        menu_profile_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new TutoringDialogFragment()
-                        .show(getSupportFragmentManager().beginTransaction(), "");
 
-            }
-        });
         SetUpBookings();
 
 
@@ -104,8 +97,8 @@ public class MainActivity extends AppCompatActivity implements MenuAdapterClickI
     private void SetUpBookings() {
         RecyclerView recycler_booked = findViewById(R.id.recycler_booked);
         recycler_booked.setLayoutManager(new LinearLayoutManager(this));
-        BookingAdapter adapter = new BookingAdapter(app_items);
-
+        BookingAdapter adapter = new BookingAdapter(app_items, getSupportFragmentManager());
+        recycler_booked.setAdapter(adapter);
         FirebaseFirestore.getInstance()
                 .collection("Appointments")
                 .whereEqualTo("tutor_id", FirebaseAuth.getInstance().getUid())

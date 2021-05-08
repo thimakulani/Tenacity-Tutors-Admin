@@ -22,8 +22,11 @@ import com.thima.my_tutor_admin.R;
 import com.thima.my_tutor_admin.adapters.AppointmentAdapter;
 import com.thima.my_tutor_admin.models.AppointmentModel;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 
 public class AppointmentDialogFragment extends DialogFragment {
@@ -66,7 +69,7 @@ public class AppointmentDialogFragment extends DialogFragment {
         });
 
         FirebaseFirestore.getInstance().collection("Appointments")
-                .whereEqualTo("status", "Request")
+                .whereIn("status", Arrays.asList("Rejected", "Request"))
                 .addSnapshotListener((value, error) -> {
 
                     if(error != null){
@@ -74,7 +77,6 @@ public class AppointmentDialogFragment extends DialogFragment {
                     }
                     if (value != null && !value.isEmpty())
                     {
-
                         for (DocumentChange dc: value.getDocumentChanges()){
                             switch (dc.getType()) {
                                 case ADDED:
@@ -82,15 +84,13 @@ public class AppointmentDialogFragment extends DialogFragment {
                                     adapter.notifyDataSetChanged();
                                     break;
                                 case MODIFIED:
-
-                                    int counter = 0;
                                     for (AppointmentModel a : Items){
                                         if(a.getId().equals(dc.getDocument().getId())){
-                                            Items.set(counter, dc.getDocument().toObject(AppointmentModel.class));
+                                            a = dc.getDocument().toObject(AppointmentModel.class);
                                             adapter.notifyDataSetChanged();
                                             break;
                                         }
-                                        counter++;
+
                                     }
                                     break;
                                 case REMOVED:

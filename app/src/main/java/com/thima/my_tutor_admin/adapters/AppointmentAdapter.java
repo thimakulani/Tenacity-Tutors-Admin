@@ -24,6 +24,7 @@ import com.thima.my_tutor_admin.models.StudentsModel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentViewHolder> {
     List<AppointmentModel> Items;
@@ -57,7 +58,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentViewHold
                         .addSnapshotListener((value, error) -> {
                             if(value !=null){
                                 StudentsModel s = value.toObject(StudentsModel.class);
-                                holder.row_app_name.setText(s.getName());
+                                holder.row_app_name.setText(Objects.requireNonNull(s).getName());
                             }
                         });
             }

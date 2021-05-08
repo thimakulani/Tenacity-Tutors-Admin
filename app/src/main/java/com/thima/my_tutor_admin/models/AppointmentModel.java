@@ -14,12 +14,13 @@ public class AppointmentModel {
     private String date;
     private String stud_id;
     private String status;
+    private String meeting_room;
 
     public AppointmentModel() {
     }
 
 
-    public AppointmentModel(String tutor_id, String subject, String grade, String id, String time, String date, String stud_id, String status) {
+    public AppointmentModel(String tutor_id, String subject, String grade, String id, String time, String date, String stud_id, String status, String meeting_room) {
         this.tutor_id = tutor_id;
         this.subject = subject;
         this.grade = grade;
@@ -28,7 +29,17 @@ public class AppointmentModel {
         this.date = date;
         this.stud_id = stud_id;
         this.status = status;
+        this.meeting_room = meeting_room;
     }
+
+    public String getMeeting_room() {
+        return meeting_room;
+    }
+
+    public void setMeeting_room(String meeting_room) {
+        this.meeting_room = meeting_room;
+    }
+
     public String getGrade() {
         return grade;
     }
